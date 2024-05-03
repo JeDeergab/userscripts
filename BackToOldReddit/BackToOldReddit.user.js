@@ -1,21 +1,14 @@
 // ==UserScript==
-// @author      PotcFdk
-// @name        BackToOldReddit
-// @namespace   https://github.com/PotcFdk
-// @description Ensures that you stay on old.reddit.com.
-// @match       *://www.reddit.com/*
-// @exclude     https://www.reddit.com/media*
-// @version     0.0.2
-// @grant       none
-// @icon        https://www.redditstatic.com/icon.png
-// @homepageURL https://github.com/PotcFdk/userscripts/tree/master/BackToOldReddit
-// @supportURL  https://github.com/PotcFdk/userscripts/issues
-// @downloadURL https://raw.githubusercontent.com/PotcFdk/userscripts/master/BackToOldReddit/BackToOldReddit.user.js
-// @updateURL   https://raw.githubusercontent.com/PotcFdk/userscripts/master/BackToOldReddit/BackToOldReddit.meta.js
-// @run-at      document-start
+// @name BackToOldReddit
+// @namespace Reddit Junk
+// @match *://www.reddit.com/*
+// @grant none
+// @run-at document-start
 // ==/UserScript==
-
-const currentURL = window.document.location.toString();
-
-if (currentURL.includes ("//www"))
-	window.document.location.replace (currentURL.replace ("//www","//old"));
+var currentURL = window.document.location.toString();
+if (currentURL.includes("//www.reddit.com/login")) {
+  // Do nothing if it's the login page
+} else if (currentURL.includes("//www")) {
+  var newURL = currentURL.replace("//www", "//old");
+  window.document.location.replace(newURL);
+}
